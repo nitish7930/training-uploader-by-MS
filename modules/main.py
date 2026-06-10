@@ -26,6 +26,12 @@ from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+# ── Live-changeable API endpoints (owner can update via /changeapi) ──────────
+# Both PWAPI1 and PWAPI2 always stay in sync — use /changeapi to update both
+PWAPI1 = "https://anonymouspwplayer-ce3f42358cca.herokuapp.com/pw"
+PWAPI2 = "https://anonymouspwplayer-ce3f42358cca.herokuapp.com/pw"
+# ───────────────────────────────────────────────────────────
+
 # Initialize the bot
 bot = Client(
     "bot",
@@ -647,8 +653,55 @@ async def txt_handler(bot: Client, m: Message):
         await m.reply_text(e)
     await m.reply_text("𝙀𝙑𝙀𝙍𝙔𝙏𝙃𝙄𝙉𝙂 𝙄𝙎 𝘿𝙊𝙉𝙀  𝘿𝙊𝙉𝙀 \n\n**NOW TIME FOR REACTIONS✅** \n\n**Reaction nahi de rhe ho Sharam karo thodi Paap lagega Paap😂**")
 
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── /owner command ─────────────────────────────────────────────────────────────
+def register_owner_commands(bot):
+    @bot.on_message(filters.command("owner") & filters.private)
+    async def owner_handler(client: Client, msg: Message):
+        db.register_user(msg.from_user.id)
+        owner_text = (
+            "┌──────────────────────────┐\n"
+            "**💥Contact**: @CinderellaContactBot\n"
+            "└──────────────────────────┘\n\n"
+        )
+        await msg.reply_text(owner_text)
 
 
-bot.run()
+    # ── /changeapi command (owner only) ───────────────────────────────────────
+    # Usage: /changeapi https://new-api.example.com/pw
+    # Updates both PWAPI1 and PWAPI2 at once (they always use the same API)
+    @bot.on_message(filters.command("changeapi") & filters.private)
+    async def changeapi_handler(client: Client, msg: Message):
+        global PWAPI1, PWAPI2
+        if msg.from_user.id != OWNER:
+            return await msg.reply_text(
+                "To change your Api in your Repository in this format👇🏻.\n\n"
+                "/changeapi New Api Here\n**https... to .com/pw** tak Only😁.\n\n"
+                "But But But🫡\n"
+                "Sorry you are not my owner😒."
+            )
+
+        parts = msg.text.split(None, 1)
+        if len(parts) < 2 or not parts[1].strip():
+            return await msg.reply_text(
+                "Welcome Boss To change your Api in your Repository in this format\n\n"
+                "/changeapi New Api Here\n**https... to .com/pw** tak Only😁.\n\n"
+                "Send me I will change it.✨"
+            )
+
+        new_api = parts[1].strip()
+        PWAPI1 = new_api
+        PWAPI2 = new_api
+        await msg.reply_text(
+            f" **💕𝐀𝐩𝐢 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐂𝐡𝐚𝐧𝐠𝐞𝐝!**\n\n"
+            f"🔗 **𝐍𝐞𝐰 𝐀𝐩𝐢:**\n`{PWAPI1}`\n\n"
+            f"⚡ 𝐂𝐡𝐚𝐧𝐠𝐞𝐝 𝐋𝐢𝐯𝐞 𝐍𝐨𝐰 — 𝐍𝐨 𝐁𝐨𝐭 𝐫𝐞𝐬𝐭𝐚𝐫𝐭 𝐧𝐞𝐞𝐝𝐞𝐝 𝐔𝐬𝐞 𝐍𝐨𝐰🚀."
+        )
+
+#============================================================================================================
+
+
+.run()
 if __name__ == "__main__":
     asyncio.run(main())
