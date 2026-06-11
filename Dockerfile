@@ -10,5 +10,9 @@ WORKDIR /app/
 RUN pip install --upgrade pip setuptools wheel -r Installer
 
 ENV COOKIES_FILE_PATH="/modules/youtube_cookies.txt"
+# WEBHOOK=False → aiohttp web server inside main.py is disabled.
+# Gunicorn (app:app) already owns the PORT assigned by Render, so letting
+# main.py also bind the same port caused [Errno 98] Address already in use.
+ENV WEBHOOK="False"
 
 CMD gunicorn app:app & python3 modules/main.py
