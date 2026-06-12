@@ -97,12 +97,12 @@ image_list = [
 async def send_failed_notice(bot, chat_id, vid_id, title, url, reason):
     """Send a formatted failed-download notice message."""
     msg = (
-        "**🥺𝐒𝐨𝐫𝐫𝐲 𝐢 𝐜𝐚𝐧'𝐭 𝐚𝐛𝐥𝐞 𝐭𝐨 𝐝𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐭𝐡𝐢𝐬:**\n\n"
-        + "** 🖲️𝐕𝐈𝐃_𝐈𝐃:** `" + str(vid_id).zfill(3) + "`\n\n"
-        + "**📝 𝐓𝐢𝐭𝐥𝐞:** " + str(title) + "\n\n"
-        + "**𝐔𝐑𝐋:** " + str(url) + "\n\n"
-        + "**𝐑𝐞𝐚𝐬𝐨𝐧:** `" + str(reason) + "`\n\n"
-        + "__𝐈𝐟 𝐲𝐨𝐮 𝐭𝐡𝐢𝐧𝐤 𝐢𝐭'𝐬 𝐒𝐡𝐨𝐮𝐥𝐝 𝐛𝐞 𝐝𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐞𝐝 𝐬𝐨 𝐜𝐨𝐧𝐭𝐚𝐜𝐭 𝐭𝐨 𝐎𝐰𝐧𝐞𝐫.__"
+        "**🥺ꜱᴏʀʀʏ ɪ ᴄᴀɴ'ᴛ ᴀʙʟᴇ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜɪꜱ:**\n\n"
+        + "**🪩ᴠɪᴅ_ɪᴅ:** `" + str(vid_id).zfill(3) + "`\n\n"
+        + "**📝 ᴛɪᴛᴇʟ:** " + str(title) + "\n\n"
+        + "**ᴜʀʟ:** " + str(url) + "\n\n"
+        + "**ʀᴇᴀꜱᴏɴ:** `" + str(reason) + "`\n\n"
+        + "**ɪꜰ ʏᴏᴜ ᴛʜɪɴᴋ ɪᴛ ꜱʜᴏᴜʟᴅ ʙᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇᴅ, ᴛʜᴇɴ ᴄᴏɴᴛᴀᴄᴛ ᴛʜᴇ ᴏᴡɴᴇʀ.**"
     )
     try:
         await bot.send_message(
@@ -110,7 +110,7 @@ async def send_failed_notice(bot, chat_id, vid_id, title, url, reason):
             msg,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton(text="👑𝐎𝐖𝐍𝐄𝐑", url="https://t.me/SmartBoy_ApnaMS")]
+                [InlineKeyboardButton(text="👑ᴏᴡɴᴇʀ", url="https://t.me/SmartBoy_ApnaMS")]
             ])
         )
     except Exception as e:
@@ -556,8 +556,8 @@ async def txt_handler(bot: Client, m: Message):
 
             try:  
                 
-                cc = f'**📹 VID_ID: {str(count).zfill(3)}.\n\n📝 Title: {name1} {res}.mkv\n\n<pre><code>📚 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By♠ :\n {CR}\n\n**👑━━━💙 𝑻𝒉𝒆 𝑺𝑲 🩷━━━👑**'
-                cc1 = f'**💾 PDF_ID: {str(count).zfill(3)}.\n\n📝 Title: {name1} .pdf\n\n<pre><code>📚 Batch Name: {b_name}</code></pre>\n\n📥 Extracted By♠ :\n {CR}\n\n**👑━━━💚 𝑻𝒉𝒆 𝑺𝑲 ❤️━━━👑**'
+                cc = f'**🪩 ᴠɪᴅ_ɪᴅ: {str(count).zfill(3)}.\n\n📝 ᴛɪᴛᴇʟ: {name1} {res} ||_. @MR_Toxic_1 ._||.mkv\n\n<pre><code>📚 ʙᴀᴛᴄʜ ɴᴀᴍᴇ: {b_name}</code></pre>\n\n📥 ᴜᴘʟᴏᴀᴅ ʙʏ♠:\n{CR}\n\n**👑━━━💙 ᴛᴇᴀᴍ ᴛᴏxɪᴄ 🩷━━━👑**'
+                cc1 = f'**💾 ᴘᴅꜰ_ɪᴅ: {str(count).zfill(3)}.\n\n📝 ᴛɪᴛᴇʟ: {name1} ||_. @MR_Toxic_1 ._||.pdf\n\n<pre><code>📚 ʙᴀᴛᴄʜ ɴᴀᴍᴇ: {b_name}</code></pre>\n\n📥 ᴜᴘʟᴏᴀᴅ ʙʏ♠:\n{CR}\n\n**👑━━━💚 ᴛᴇᴀᴍ ᴛᴏxɪᴄ ❤️━━━👑**'
                     
                 
                 if "drive" in url:
@@ -598,7 +598,7 @@ async def txt_handler(bot: Client, m: Message):
             # Remove the PDF file after sending
                             os.remove(f'{name}.pdf')
                         else:
-                            await m.reply_text(f"Failed to download PDF: {response.status_code} {response.reason}")
+                            await m.reply_text(f"ꜰᴀɪʟᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴘᴅꜰ: {response.status_code} {response.reason}")
 
                     except FloodWait as e:
                         await m.reply_text(str(e))
@@ -619,7 +619,7 @@ async def txt_handler(bot: Client, m: Message):
                         continue                       
                           
                 else:
-                    Show = f"✰🖥️ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝗪𝗮𝗶𝘁..🤖🚀 »\n\n📝 Title:- `{name}\n\n📹 𝐐𝐮𝐥𝐢𝐭𝐲 » {raw_text2}`\n\n**🔗 𝐔𝐑𝐋 »** `{url}`\n\n**𝐁𝐨𝐭 𝐌𝐚𝐝𝐞 𝐁𝐲🧸: ✦ @SunilChoudhary08 ❖"
+                    Show = f"✰🖥️ ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ᴡᴀɪᴛ..🤖🚀 »\n\n📝 ᴛɪᴛᴇʟ:- `{name}\n\n📹 Qᴜᴀʟɪᴛʏ » {raw_text2}`\n\n**🔗 ᴜʀʟ »** `{url}`\n\n**ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ🧸: ✦ @SmartBoy_ApnaMS ❖"
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
@@ -634,7 +634,7 @@ async def txt_handler(bot: Client, m: Message):
 
     except Exception as e:
         await m.reply_text(e)
-    await m.reply_text("𝐀𝐋𝐋 𝐃𝐎𝐍𝐄 Reaction khud de doge ya kahna padega ✅🔸")
+    await m.reply_text("**🎉 ᴀʟʟ ᴅᴏɴᴇ! 🎉\n\n✅ ᴛᴏᴅᴀʏ'ꜱ ʙᴀᴛᴄʜ ᴅᴏᴡɴʟᴏᴀᴅ ʜᴀꜱ ʙᴇᴇɴ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ!\n\nᴀ Qᴜɪᴄᴋ ʀᴇᴀᴄᴛɪᴏɴ ᴡᴏᴜʟᴅ ʙᴇ ɢʀᴇᴀᴛʟʏ ᴀᴘᴘʀᴇᴄɪᴀᴛᴇᴅ.\nꜱᴛᴀʏ ᴄᴏɴɴᴇᴄᴛᴇᴅ ꜰᴏʀ ᴍᴏʀᴇ ᴀᴍᴀᴢɪɴɢ ᴄᴏɴᴛᴇɴᴛ ᴀɴᴅ ᴜᴘᴅᴀᴛᴇꜱ.\n\n\n💠ᴛʜᴀɴᴋ ʏᴏᴜ ꜰᴏʀ ʏᴏᴜʀ ꜱᴜᴘᴘᴏʀᴛ!**")
 
 # Advance
 
