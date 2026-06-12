@@ -78,13 +78,16 @@ broadcast_users: set = _load_broadcast_users()
 
 # ── Random image list ────────────────────────────────────────────────────────
 image_list = [
-    "https://graph.org/file/41f315a54e91963176271-084a885105ba946f5e.jpg",
-    "https://graph.org/file/e45d8d37be0c22a9cbbfa-3f2796849a1b13643a.jpg",
-    "https://graph.org/file/2d3ba7771a207e4ab33aa-272463dad4b5338502.jpg",
-    "https://graph.org/file/97d3d6a3c21bc9bdfa000-748da0a998885a9aaa.jpg",
-    "https://graph.org/file/b90ad7792c1d6b1b0d0ad-22be3904ec15293242.jpg",
-    "https://graph.org/file/b2d5f4c1abab45da76a80-699357bf49c4bbb721.jpg",
-    "https://graph.org/file/7fcefd140feafb524a0f6-0172a531df2ac35c9c.jpg",
+    "https://graph.org/file/0ffe5c1245b874d4a9bf1-3b2481397f6f380c85.jpg",
+    "https://graph.org/file/fae9ed988db074ba5c2f5-ad0a0037cc1bdddbdd.jpg",
+    "https://graph.org/file/d24b9bd4d0592a07ad746-de047531c5efafafce.jpg",
+    "https://graph.org/file/30b2b264822802cfca0e5-955b8cb8bd0ef5da16.jpg",
+    "https://graph.org/file/06d5077e2fe5442e1dbb4-77cb51eecc0aab0608.jpg",
+    "https://graph.org/file/47792b7d2acd7ab812e65-ae8e8c3b1071eb2b23.jpg",
+    "https://graph.org/file/8ea482ae6278601bae5c5-b1475ac9b0622a6cd7.jpg",
+    "https://graph.org/file/648d50f45bf0dd06cd12a-129509de7ebc2c6036.jpg",
+    "https://graph.org/file/5312e32455e56860c75cb-b56bedb77b7cf93227.jpg",
+    "https://graph.org/file/977afb0f88089d227a19d-443ba34add7d83a182.jpg",
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -105,7 +108,7 @@ async def send_failed_notice(bot, chat_id, vid_id, title, url, reason):
             msg,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton(text="👑𝐎𝐖𝐍𝐄𝐑", url="https://t.me/SunilChoudhary08")]
+                [InlineKeyboardButton(text="👑𝐎𝐖𝐍𝐄𝐑", url="https://t.me/SmartBoy_ApnaMS")]
             ])
         )
     except Exception as e:
@@ -191,7 +194,7 @@ async def main():
         
 class Data:
     START = (
-        "🌟 Welcome dear 🌚💥 {0}! 🌟\n\n"
+        "🌟 Welcome Darling 😘🙈 {0}! 🌟\n\n"
     )
 # Define the start command handler
 @bot.on_message(filters.command("start"))
