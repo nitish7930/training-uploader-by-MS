@@ -13,7 +13,7 @@ import cloudscraper
 import m3u8
 import core as helper
 from utils import progress_bar
-from vars import API_ID, API_HASH, BOT_TOKEN, OWNER
+from vars import API_ID, API_HASH, BOT_TOKEN, OWNER, AUTH_USERS as VARS_AUTH_USERS
 from aiohttp import ClientSession
 from pyromod import listen
 from subprocess import getstatusoutput
@@ -54,6 +54,8 @@ def _save_auth_users(users: set):
         pass
 
 auth_users: set = _load_auth_users()
+# ── Also include AUTH_USERS from vars.py (env variable, comma-separated) ─────
+auth_users.update(VARS_AUTH_USERS)
 # ─────────────────────────────────────────────────────────────────────────────
 
 # ── Persistent Broadcast Users (JSON-backed, survives bot restart) ───────────
@@ -393,6 +395,16 @@ async def changeapi_handler(client: Client, m: Message):
 
 @bot.on_message(filters.command(["The08"]) )
 async def txt_handler(bot: Client, m: Message):
+    # ── Auth Check ────────────────────────────────────────────────────────────
+    if m.chat.id not in auth_users:
+        return await m.reply_text(
+            f"<blockquote>🤣😘 **Please Upgrade Your Plan to Become Owner then Use Me!**\n\n"
+            f"__Oopss! You are not a Premium member__\n"
+            f"__Want to use this? Contact owner first!__\n\n"
+            f"**Your User ID:** `{m.chat.id}`</blockquote>\n\n"
+            f"👉 Contact: @SmartBoy_ApnaMS"
+        )
+    # ─────────────────────────────────────────────────────────────────────────
     editable = await m.reply_text(f"**🔹Hi I am Poweful Lovely TXT Downloader📥 Bot.**\n🔹**Send me the TXT file and Just wait and Watch😚.**")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
@@ -628,6 +640,16 @@ async def txt_handler(bot: Client, m: Message):
 
 @bot.on_message(filters.command(["Sobi"]) )
 async def txt_handler(bot: Client, m: Message):
+    # ── Auth Check ────────────────────────────────────────────────────────────
+    if m.chat.id not in auth_users:
+        return await m.reply_text(
+            f"<blockquote>🤣😘 **Please Upgrade Your Plan to Become Owner then Use Me!**\n\n"
+            f"__Oopss! You are not a Premium member__\n"
+            f"__Want to use this? Contact owner first!__\n\n"
+            f"**Your User ID:** `{m.chat.id}`</blockquote>\n\n"
+            f"👉 Contact: @SmartBoy_ApnaMS"
+        )
+    # ─────────────────────────────────────────────────────────────────────────
     editable = await m.reply_text(f"**🔹Hi I am Poweful Lovely TXT Downloader📥 Bot.**\n🔹**Send me the TXT file and Just wait and Watch🥵.**")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
