@@ -525,25 +525,6 @@ async def txt_handler(bot: Client, m: Message):
     else:
         thumb == "no"
 
-    # ── Step: Channel ID ──────────────────────────────────────────────────────
-    await _send_step_sticker_h("CAACAgIAAxkBAAFMOq9qK-Q-N-bm2qyXyVdgpYDuO2txRAACdzIAArwF0EgMDONyCH8JTjwE")
-    _ch_editable = await m.reply_text(
-        "**🔹ꜱᴇɴᴅ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ɪᴅ ᴏʀ ꜱᴇɴᴅ /Baby**\n\n"
-        "<blockquote><i>🔹 ᴍᴀᴋᴇ ᴍᴇ ᴀɴ ᴀᴅᴍɪɴ ꜱᴏ ᴛʜᴀᴛ ɪ ᴄᴀɴ ᴜᴘʟᴏᴀᴅ.\n\n"
-        "ᴇxᴀᴍᴘʟᴇ: ᴄʜᴀɴɴᴇʟ ɪᴅ = -1001434XXXXX786</i></blockquote>"
-    )
-    try:
-        _ch_input: Message = await bot.listen(_ch_editable.chat.id, timeout=200)
-        raw_text7 = _ch_input.text
-        await _ch_input.delete(True)
-    except asyncio.TimeoutError:
-        raw_text7 = '/Baby'
-    if "/Baby" in raw_text7:
-        channel_id = m.chat.id
-    else:
-        channel_id = raw_text7
-    await _ch_editable.delete()
-
     # Delete last step sticker
     if _step_sticker_msg[0]:
         try:
@@ -658,7 +639,7 @@ async def txt_handler(bot: Client, m: Message):
                         await _send_downloading_sticker()
                         ka = await helper.download(url, name)
                         await _send_uploading_sticker()
-                        copy = await bot.send_document(chat_id=channel_id,document=ka, caption=cc1)
+                        copy = await bot.send_document(chat_id=m.chat.id,document=ka, caption=cc1)
                         await _delete_uploading_sticker()
                         count+=1
                         os.remove(ka)
@@ -690,7 +671,7 @@ async def txt_handler(bot: Client, m: Message):
             # Send the PDF document
                             await asyncio.sleep(4)
                             await _send_uploading_sticker()
-                            copy = await bot.send_document(chat_id=channel_id, document=f'{name}.pdf', caption=cc1)
+                            copy = await bot.send_document(chat_id=m.chat.id, document=f'{name}.pdf', caption=cc1)
                             await _delete_uploading_sticker()
                             count += 1
 
@@ -711,7 +692,7 @@ async def txt_handler(bot: Client, m: Message):
                         download_cmd = f"{cmd} -R 25 --fragment-retries 25"
                         os.system(download_cmd)
                         await _send_uploading_sticker()
-                        copy = await bot.send_document(chat_id=channel_id, document=f'{name}.pdf', caption=cc1)
+                        copy = await bot.send_document(chat_id=m.chat.id, document=f'{name}.pdf', caption=cc1)
                         await _delete_uploading_sticker()
                         count += 1
                         os.remove(f'{name}.pdf')
@@ -728,7 +709,7 @@ async def txt_handler(bot: Client, m: Message):
                     filename = res_file
                     await prog.delete(True)
                     await _send_uploading_sticker()
-                    await helper.send_vid(bot, m, cc, filename, thumb, name, prog, channel_id)
+                    await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
                     await _delete_uploading_sticker()
                     count += 1
                     time.sleep(1)
