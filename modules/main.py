@@ -199,7 +199,7 @@ class Data:
         "🌟 ᴡᴇʟᴄᴏᴍᴇ ʜᴀʙɪʙɪ🤭 {0}! 🌟\n\n"
     )
 # Define the start command handler
-@bot.on_message(filters.command("start"))
+@bot.on_message(filters.command("/toxic1"))
 async def start(client: Client, msg: Message):
     user = await client.get_me()
     mention = user.mention
