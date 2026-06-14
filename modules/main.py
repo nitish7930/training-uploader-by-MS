@@ -1,4 +1,4 @@
-import os
+ji jiimport os
 import re
 import sys
 import json
@@ -396,7 +396,7 @@ async def changeapi_handler(client: Client, m: Message):
 
 # ══════════════════════════════════════════════════════════════════════════════
 
-@bot.on_message(filters.command(["Habibi"]) )
+@bot.on_message(filters.command(["Toxic07"]) )
 async def txt_handler(bot: Client, m: Message):
     # ── Auth Check ────────────────────────────────────────────────────────────
     if m.chat.id not in auth_users:
